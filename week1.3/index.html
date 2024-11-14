@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Todo List</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="header">Todo List</h1>
+      </header>
+
+      <section>
+        <form id="form">
+          <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" placeholder="Enter title" />
+          </div>
+          <div>
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+          </div>
+          <div>
+            <label for="description">Description</label>
+            <textarea
+              maxlength="300"
+              id="description"
+              placeholder="Enter description"
+            ></textarea>
+          </div>
+          <button type="submit">Add Todo</button>
+        </form>
+      </section>
+
+      <section class="sort-buttons">
+        <button id="sortAsc">Sort by Date (Ascending)</button>
+        <button id="sortDesc">Sort by Date (Descending)</button>
+      </section>
+
+      <section class="todo-list-container">
+        <!-- To-do list items will appear here -->
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
