@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advice Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="outer-container">
+      <div class="inner-container">
+        <!-- Display Advice Number -->
+        <p id="advice-number" class="advice-number">ADVICE #</p>
+
+        <!-- Display the actual advice -->
+        <blockquote id="advice" class="advice">
+          Click "Generate" to get advice
+        </blockquote>
+
+        <!-- Loading indicator -->
+        <p id="loading-indicator" class="loading">Loading...</p>
+
+        <!-- Button to generate new advice -->
+        <button id="generate-button">Generate</button>
+
+        <!-- Retry Button in case of error -->
+        <button id="retry-button">Try Again</button>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

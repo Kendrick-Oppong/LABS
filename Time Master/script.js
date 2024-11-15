@@ -1,4 +1,4 @@
-// 1 Time object basics
+// 1. Time object basics
 // Date object to represent the current time
 const currentTime = new Date();
 
@@ -7,12 +7,8 @@ const hours = currentTime.getHours();
 const minutes = currentTime.getMinutes();
 const seconds = currentTime.getSeconds();
 
-// Logging the current time
-console.log(`Current Time: ${hours}:${minutes}:${seconds}`);
-
-// 2 Object Oriented Clock
+// 2. Object-Oriented Clock
 // Task: Design a Clock object with properties like hours, minutes, and seconds
-
 class Clock {
   constructor() {
     // Date object to get current time
@@ -24,13 +20,17 @@ class Clock {
     this.seconds = currentTime.getSeconds();
   }
 
+  // Helper method to format time
+  formatTime(hours, minutes, seconds) {
+    const formattedHours = hours.toString().padStart(2, "0");
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  }
+
   // Method to return time in "HH:MM:SS" format (24-hour format)
   getFormattedTime() {
-    const formattedHours = this.hours.toString().padStart(2, "0");
-    const formattedMinutes = this.minutes.toString().padStart(2, "0");
-    const formattedSeconds = this.seconds.toString().padStart(2, "0");
-
-    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    return this.formatTime(this.hours, this.minutes, this.seconds);
   }
 
   // Method to return time in 12-hour format with AM/PM
@@ -49,28 +49,20 @@ class Clock {
       hours12 = 12;
     }
 
-    const formattedHours = hours12.toString().padStart(2, "0");
-    const formattedMinutes = this.minutes.toString().padStart(2, "0");
-    const formattedSeconds = this.seconds.toString().padStart(2, "0");
-
-    return `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${period}`;
+    const formattedTime = this.formatTime(hours12, this.minutes, this.seconds);
+    return `${formattedTime} ${period}`;
   }
 
   // Method to update time properties every second
   updateTime() {
+    // new Date() is needed to get the real-time values for hours, minutes, and seconds
+    // and keeps the clock in sync with the actual system time.
     const currentTime = new Date();
     this.hours = currentTime.getHours();
     this.minutes = currentTime.getMinutes();
     this.seconds = currentTime.getSeconds();
   }
 }
-
-// Create an instance of the Clock object
-const currentClock = new Clock();
-
-// Outputting the formatted time in both formats
-console.log("24-Hour Time:", currentClock.getFormattedTime());
-console.log("12-Hour Time:", currentClock.get12HourTime());
 
 // Function to display the clock on the webpage
 function displayClock() {
@@ -92,7 +84,7 @@ function displayClock() {
 
 displayClock();
 
-//  Clock with customizable color
+// Clock with customizable color
 const clockElement = document.getElementById("clock");
 const textColor = document.getElementById("textColor");
 const backgroundColor = document.getElementById("backgroundColor");
@@ -133,15 +125,13 @@ function setAlarmTime() {
 function checkAlarm(clock) {
   // Format current time as HH:MM
   const currentHours = clock.hours.toString().padStart(2, "0");
-
   const currentMinutes = clock.minutes.toString().padStart(2, "0");
 
   const currentFormattedTime = `${currentHours}:${currentMinutes}`;
 
   // Check if current time matches the alarm time
   if (alarmTime && currentFormattedTime === alarmTime) {
-    const is12HourFormat = currentHours > 12 ? currentHours - 12 : currentHours;
-    alert("ALARM! The time is " + `0${is12HourFormat}:${currentMinutes} `);
+    alert("ALARM! The time is " + currentFormattedTime);
     alarmTime = null;
   }
 }
