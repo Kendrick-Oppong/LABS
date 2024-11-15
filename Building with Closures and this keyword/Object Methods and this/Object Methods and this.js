@@ -12,9 +12,7 @@ const Person = {
   name: "John Doe",
   age: 30,
   greet() {
-    console.log(
-      `Hello, my name is ${this.name} and I'm ${this.age} years old.`
-    );
+    alert(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
   },
 };
 
@@ -22,9 +20,9 @@ Person.greet();
 
 const anotherPerson = { name: "Mike", age: 25 };
 
-Person.greet.call(anotherPerson); 
+Person.greet.call(anotherPerson);
 
-Person.greet.apply(anotherPerson); 
+Person.greet.apply(anotherPerson);
 
-const boundGreet = Person.greet.bind(anotherPerson);;
+const boundGreet = Person.greet.bind(anotherPerson);
 boundGreet();

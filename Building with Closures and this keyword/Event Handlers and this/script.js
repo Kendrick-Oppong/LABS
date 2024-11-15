@@ -12,13 +12,12 @@ difference in how this behaves.
 const button = document.getElementById("btn");
 
 function handleClick() {
-  console.log(this.id); 
-  console.log(this.textContent);
+  alert(this.id);
+  alert(this.textContent);
 }
 button.addEventListener("click", handleClick);
 
-
 button.addEventListener("click", () => {
-  console.log(this.id); 
-  console.log(this.textContent); 
+  alert(this.id);
+  alert(this.textContent);
 });

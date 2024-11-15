@@ -12,7 +12,7 @@ function createCounter() {
   let obj = {
     increment() {
       count++;
-      console.log(this.count);
+      alert(this.count);
     },
 
     getCount() {
@@ -22,4 +22,3 @@ function createCounter() {
 
   return obj;
 }
-
