@@ -27,7 +27,7 @@ function createTimer(duration, elementId) {
       remainingTime--;
     } else {
       clearInterval(timer);
-      console.log("Timer finished");
+      alert("Timer finished");
     }
   }
 
