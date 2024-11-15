@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#battleResult {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e0f7fa;
+  border-radius: 5px;
+}
+
+.superhero-selection {
+  margin: 10px 0;
+}
+
+select {
+  padding: 10px;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
