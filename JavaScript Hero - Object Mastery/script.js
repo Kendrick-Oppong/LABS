@@ -7,45 +7,39 @@ const superhero = {
   weakness: "Kryptonite",
 };
 
-console.log(superhero); // Display superhero object
+
 
 // Task 2
-// Object representing methods to allow the superhero to use powers and reveal their identity.
+// Add methods to allow the superhero to use powers and reveal their identity.
 superhero.usePower = function (powerName) {
-  // Method that logs a message when the superhero uses a specific power
   return `${this.name} is using ${powerName}!`;
 };
 
 superhero.revealIdentity = function () {
-  // Method that logs the superhero's secret identity
   return `${this.name}'s secret identity is ${this.secretIdentity}.`;
 };
 
-// Test the methods
-console.log(superhero.usePower("Laser Vision"));
-console.log(superhero.revealIdentity());
+superhero.usePower("Laser Vision");
+superhero.revealIdentity();
 
 // Task 3
-// Object representing a constructor function for creating multiple superhero objects with specific properties.
+// Create a Superhero constructor function to streamline the creation of multiple superheroes.
+
 function Superhero(name, secretIdentity, powers, weakness) {
   this.name = name;
   this.secretIdentity = secretIdentity;
   this.powers = powers;
   this.weakness = weakness;
 
-  // Method that logs a message when the superhero uses a specific power
   this.usePower = function (powerName) {
     return `${this.name} is using ${powerName}!`;
   };
 
-  // Method that logs the superhero's secret identity
   this.revealIdentity = function () {
     return `${this.name}'s secret identity is ${this.secretIdentity}`;
   };
 }
 
-// Task 4
-// Object representing superheroes created using the constructor function.
 const hero1 = new Superhero(
   "Iron Hawk",
   "James Falcon",
@@ -60,23 +54,21 @@ const hero2 = new Superhero(
   "Bright Light"
 );
 
-// Testing the constructor by using the methods.
-console.log(hero1.usePower("Laser Vision"));
-console.log(hero2.revealIdentity());
+hero1.usePower("Laser Vision");
+hero2.revealIdentity();
 
-// Task 5
-// Object representing prototypal inheritance by adding the fightVillain method to the Superhero constructor.
+// Task 4
+//  Extend the functionality of your superheroes using prototypal inheritance
+
 Superhero.prototype.fightVillain = function (villainName) {
-  // Method that logs a message when the superhero fights a villain
   return `${this.name} is fighting the villain: ${villainName}!`;
 };
 
-// Testing the prototype method with the superheroes.
 hero1.fightVillain("Doctor Doom");
 hero2.fightVillain("The Phantom");
 
-// Task 6
-// Object representing an array of superheroes created using the constructor function.
+// Task 5
+//  Use forEach, map, or filter to manipulate an array of superheroes and supervillains.
 const superheroes = [
   {
     name: "Iron Hawk",
@@ -98,12 +90,10 @@ const superheroes = [
   },
 ];
 
-// Object representing an operation to log a message for each superhero in the array
 superheroes.forEach((hero) => {
   console.log(`${hero.name} is ready for action!`);
 });
 
-// Object representing the transformation of superhero names into a new array using map.
 const superheroNames = superheroes.map((hero) => hero.name);
 console.log("Superhero Names: ", superheroNames);
 
@@ -114,18 +104,7 @@ const hero1Select = document.getElementById("hero1");
 const hero2Select = document.getElementById("hero2");
 const battleResultDiv = document.getElementById("battleResult");
 
-// Function to start the battle between two superheroes
-function startBattle(hero1, hero2) {
-  console.log(`🔥 The battle begins between ${hero1.name} and ${hero2.name}!`);
 
-  // Determine the winner based on the number of powers each hero has
-  const winner = hero1.powers.length > hero2.powers.length ? hero1 : hero2;
-
-  // Displaying battle outcome
-  console.log(`🏆 The winner is... ${winner.name}!`);
-  console.log(`${hero1.name} uses: ${hero1.powers.join(", ")}`);
-  console.log(`${hero2.name} uses: ${hero2.powers.join(", ")}`);
-}
 
 // Task 8 - Battle Simulation UI Integration
 startBattleBtn.addEventListener("click", function () {
@@ -147,9 +126,6 @@ startBattleBtn.addEventListener("click", function () {
     alert("You cannot choose the same superhero for both players.");
     return;
   }
-
-  // Start the battle and display the result
-  startBattle(hero1, hero2);
 
   // Display the battle result in the HTML
   const result = `
