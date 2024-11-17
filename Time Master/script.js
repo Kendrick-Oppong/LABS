@@ -1,26 +1,12 @@
-// 1. Time object basics
-// Date object to represent the current time
-const currentTime = new Date();
-
-// Extracting hours, minutes, and seconds from the Date object
-const hours = currentTime.getHours();
-const minutes = currentTime.getMinutes();
-const seconds = currentTime.getSeconds();
-
-// 2. Object-Oriented Clock
-// Task: Design a Clock object with properties like hours, minutes, and seconds
+// 1. Object-Oriented Clock
 class Clock {
   constructor() {
-    // Date object to get current time
-    const currentTime = new Date();
-
-    // Setting properties for hours, minutes, and seconds
-    this.hours = currentTime.getHours();
-    this.minutes = currentTime.getMinutes();
-    this.seconds = currentTime.getSeconds();
+    this.currentTime = new Date(); // Initialize the current time when the object is created
+    this.hours = this.currentTime.getHours();
+    this.minutes = this.currentTime.getMinutes();
+    this.seconds = this.currentTime.getSeconds();
   }
 
-  // Helper method to format time
   formatTime(hours, minutes, seconds) {
     const formattedHours = hours.toString().padStart(2, "0");
     const formattedMinutes = minutes.toString().padStart(2, "0");
@@ -28,76 +14,99 @@ class Clock {
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   }
 
-  // Method to return time in "HH:MM:SS" format (24-hour format)
   getFormattedTime() {
     return this.formatTime(this.hours, this.minutes, this.seconds);
   }
 
-  // Method to return time in 12-hour format with AM/PM
   get12HourTime() {
     let period = "AM";
     let hours12 = this.hours;
 
-    // Converting 24-hour time to 12-hour time
     if (hours12 >= 12) {
       period = "PM";
-      hours12 -= 12; // Subtracting 12 to convert to 12-hour format
+      hours12 -= 12;
     }
-
-    // Handling the case for midnight (00:00), which should be 12 AM
     if (hours12 === 0) {
       hours12 = 12;
     }
 
-    const formattedTime = this.formatTime(hours12, this.minutes, this.seconds);
-    return `${formattedTime} ${period}`;
+    return `${this.formatTime(hours12, this.minutes, this.seconds)} ${period}`;
   }
 
-  // Method to update time properties every second
   updateTime() {
-    // new Date() is needed to get the real-time values for hours, minutes, and seconds
-    // and keeps the clock in sync with the actual system time.
-    const currentTime = new Date();
-    this.hours = currentTime.getHours();
-    this.minutes = currentTime.getMinutes();
-    this.seconds = currentTime.getSeconds();
+    this.currentTime = new Date(); // Update current time every time this is called
+    this.hours = this.currentTime.getHours();
+    this.minutes = this.currentTime.getMinutes();
+    this.seconds = this.currentTime.getSeconds();
+  }
+
+  getTimeForTimezone(timezone) {
+    let offset = 0; // Default is Local Time
+    switch (timezone) {
+      case "utc":
+        offset = 0;
+        break;
+      case "gmt":
+        offset = 0;
+        break;
+      case "est":
+        offset = -5;
+        break;
+      case "pst":
+        offset = -8;
+        break;
+
+      default:
+        offset = new Date().getTimezoneOffset() / 60;
+        break;
+    }
+
+    const adjustedTime = new Date(
+      this.currentTime.getTime() + offset * 60 * 60 * 1000
+    );
+    return this.formatTime(
+      adjustedTime.getHours(),
+      adjustedTime.getMinutes(),
+      adjustedTime.getSeconds()
+    );
   }
 }
 
-// Function to display the clock on the webpage
 function displayClock() {
   const clockElement = document.getElementById("clock");
-  const myClock = new Clock(); // Creating a new clock instance
+  const myClock = new Clock(); 
 
-  // Updating time every second
   setInterval(() => {
-    myClock.updateTime();
+    myClock.updateTime(); 
     const is12HourFormat = toggleClockFormat();
+    const selectedTimezone = getSelectedTimezone();
+
     clockElement.textContent = is12HourFormat
       ? myClock.get12HourTime()
-      : myClock.getFormattedTime();
+      : myClock.getTimeForTimezone(selectedTimezone);
 
-    // Alarm feature: Check if the current time matches the alarm time
-    checkAlarm(myClock);
+    checkAlarm(myClock); 
   }, 1000);
 }
 
 displayClock();
 
-// Clock with customizable color
+// Customization and alarm elements
 const clockElement = document.getElementById("clock");
 const textColor = document.getElementById("textColor");
 const backgroundColor = document.getElementById("backgroundColor");
 const _12HourToggleCheckbox = document.getElementById("formatToggle");
+const timezoneSelect = document.getElementById("timezoneSelect");
 const alarmButton = document.getElementById("setAlarmTime");
+const alarmSound = document.getElementById("alarmSound");
 
-// Event Listeners for customization
+// Event Listeners
 textColor.addEventListener("input", changeClockTextColor);
 backgroundColor.addEventListener("input", changeClockBackgroundColor);
 _12HourToggleCheckbox.addEventListener("change", toggleClockFormat);
+timezoneSelect.addEventListener("change", displayClock);
 alarmButton.addEventListener("change", setAlarmTime);
 
-// Color change functions
 function changeClockTextColor() {
   clockElement.style.color = textColor.value;
 }
@@ -110,7 +119,11 @@ function toggleClockFormat() {
   return _12HourToggleCheckbox.checked;
 }
 
-// Alarm feature: Function to set alarm time
+function getSelectedTimezone() {
+  return timezoneSelect.value;
+}
+
+// Alarm feature
 let alarmTime = null;
 
 function setAlarmTime() {
@@ -121,17 +134,42 @@ function setAlarmTime() {
   }
 }
 
-// Alarm checking function
 function checkAlarm(clock) {
-  // Format current time as HH:MM
-  const currentHours = clock.hours.toString().padStart(2, "0");
-  const currentMinutes = clock.minutes.toString().padStart(2, "0");
+  const currentUTC = new Date(
+    Date.UTC(
+      clock.currentTime.getUTCFullYear(),
+      clock.currentTime.getUTCMonth(),
+      clock.currentTime.getUTCDate(),
+      clock.hours,
+      clock.minutes,
+      clock.seconds
+    )
+  );
 
-  const currentFormattedTime = `${currentHours}:${currentMinutes}`;
+  const [alarmHour, alarmMinute] = alarmTime
+    .split(":")
+    .map((num) => parseInt(num, 10));
 
-  // Check if current time matches the alarm time
-  if (alarmTime && currentFormattedTime === alarmTime) {
-    alert("ALARM! The time is " + currentFormattedTime);
-    alarmTime = null;
+  const alarmUTC = new Date(
+    Date.UTC(
+      currentUTC.getUTCFullYear(),
+      currentUTC.getUTCMonth(),
+      currentUTC.getUTCDate(),
+      alarmHour,
+      alarmMinute
+    )
+  );
+
+  if (
+    currentUTC.getHours() === alarmUTC.getHours() &&
+    currentUTC.getMinutes() === alarmUTC.getMinutes()
+  ) {
+    triggerAlarm();
   }
+}
+
+function triggerAlarm() {
+  alert("ALARM! Time to wake up!");
+  alarmSound.play();
+  alarmTime = null;
 }

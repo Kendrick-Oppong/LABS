@@ -8,20 +8,31 @@
   </head>
   <body>
     <main>
-      <!-- Div to display the clock -->
+      <!-- Container to display the clock -->
       <section id="clock"></section>
 
-      <!-- set new alarm -->
+      <!-- Set new alarm -->
       <div>
         <label for="setAlarmTime">Set Alarm Time:</label>
         <input type="time" id="setAlarmTime" />
       </div>
 
-      <!-- configuration options -->
+      <!-- Configuration options -->
       <section>
         <div>
-          <label> 12-Hour Format</label>
+          <label>12-Hour Format</label>
           <input type="checkbox" checked id="formatToggle" />
+        </div>
+
+        <div>
+          <label for="timezoneSelect">Time Zone</label>
+          <select id="timezoneSelect">
+            <option value="local">Local Time</option>
+            <option value="utc">UTC Time (Coordinated Universal Time)</option>
+            <option value="gmt">GMT Time (Greenwich Mean Time)</option>
+            <option value="est">EST (Eastern Standard Time)</option>
+            <option value="pst">PST (Pacific Standard Time)</option>
+          </select>
         </div>
 
         <div>
@@ -33,8 +44,12 @@
           <label for="backgroundColor">Background Color:</label>
           <input type="color" id="backgroundColor" value="#f3eee8" />
         </div>
+
+        <!-- Alarm sound -->
+        <audio id="alarmSound" src="alarm-sound.mp3" preload="auto"></audio>
       </section>
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>
