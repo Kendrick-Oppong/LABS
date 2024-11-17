@@ -13,16 +13,14 @@
 // o Uses closures to store the timer’s state (remaining time) 
 
 function createTimer(duration, elementId) {
-  // Private variable to store the remaining time
+
   let remainingTime = duration;
 
-  // Referencing the element by its id
   const element = document.getElementById(elementId);
 
-  // Function to start the timer
   function updateTimer() {
     if (remainingTime > 0) {
-      // Updating the element content with the remaining time
+    
       element.textContent = remainingTime;
       remainingTime--;
     } else {
@@ -30,8 +28,7 @@ function createTimer(duration, elementId) {
       alert("Timer finished");
     }
   }
-
-  // Start the timer, call updateTimer every second (1000ms)
+  
   const timer = setInterval(updateTimer, 1000);
 }
 
