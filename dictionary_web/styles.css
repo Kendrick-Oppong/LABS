@@ -1,0 +1,344 @@
+/* css resets */
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  font-size: 100%;
+  font-family: "Bai Jamjuree", serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+li {
+  list-style: disc;
+  padding-left: 1rem;
+}
+
+li::marker {
+  margin-left: 2rem;
+  color: var(--color-purple-1);
+  font-size: 1rem;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* reset ends here */
+
+:root {
+  --color-gray-1: #757575;
+  --color-purple-1: #a445ed;
+  --color-white: #ffffff;
+  --color-dark-gray-1: #2d2d2d;
+  --color-purple-2: #8f19e8;
+  --color-light-gray-1: #e9e9e9;
+  --color-dark-gray-2: #3a3a3a;
+  --color-black-1: #050505;
+  --color-dark-gray-3: #1f1f1f;
+  --color-light-gray-2: #f4f4f4;
+  --color-black-2: #000000;
+  --color-red: #ff5252;
+  --color-light-gray-3: #cecece;
+}
+
+body {
+  font-family: sans-serif;
+  max-width: 737px;
+  margin-inline: auto;
+}
+
+/* header styles */
+header {
+  padding-block: 1rem;
+}
+
+nav,
+.fontFamily,
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fontFamily,
+.switch-container {
+  gap: 1rem;
+}
+
+select {
+  border: none;
+  padding: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+select option:hover {
+  color: var(--color-purple-1);
+  cursor: pointer;
+}
+
+/* The switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-gray-1);
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--color-white);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When the checkbox is checked */
+input:checked + .slider {
+  background-color: var(--color-purple-1);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Rounded slider */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* search container  */
+.search-container {
+  margin-block: 2rem;
+  position: relative;
+}
+
+.search-container img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+input[type="text"] {
+  background-color: var(--color-light-gray-2);
+  border-radius: 1rem;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  border: 1px solid var(--color-light-gray-1);
+}
+
+input[type="text"]:focus {
+  border: 1px solid var(--color-purple-1);
+  outline: none;
+}
+
+.header-play-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-play-container h1 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.header-play-container p {
+  font-size: 1.2rem;
+  color: var(--color-purple-1);
+}
+
+.header-play-container img {
+  cursor: pointer;
+}
+
+.results-container {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-light-gray-1);
+}
+
+.definition-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 24px;
+  margin-block: 2rem;
+}
+
+.definition-container hr {
+  width: 100%;
+  height: 1px;
+  margin-left: 32px;
+  border: 1px solid var(--color-light-gray-1);
+}
+
+.meaning-container p {
+  color: var(--color-gray-1);
+  margin-block: 1rem;
+}
+
+.meaning-container ul {
+  margin-left: 2rem;
+}
+
+.meaning-container li {
+  margin-block: 1rem;
+}
+
+.synonyms-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.synonyms-container {
+  margin-block: 2rem;
+}
+
+.synonyms-container p:first-child {
+  color: var(--color-gray-1);
+}
+
+.synonyms-container p:last-child {
+  color: var(--color-purple-1);
+  font-weight: bold;
+}
+
+.source-container {
+  margin-block: 3rem;
+}
+
+.source-container p {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--color-gray-1);
+  text-decoration-color: var(--color-light-gray-1);
+}
+
+.source-container,
+a {
+  display: flex;
+  gap: 5px;
+}
+
+.source-container a {
+  margin-left: 1rem;
+  color: var(--color-black-1);
+  text-underline-offset: 2px;
+  text-decoration-color: var(--color-black-1);
+}
+
+/* media queries  */
+@media (max-width: 768px) {
+  body {
+    max-width: 100%;
+    padding-inline: 2.5rem; /* 40px */
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-inline: 1.5rem; /* 24px */
+    background-color: red
+  }
+}
+
+
+
