@@ -37,10 +37,19 @@
       </nav>
     </header>
 
-    <main>
+    <!-- Spinner (loading indicator) -->
+    <div id="loadingSpinner" class="spinner hidden"></div>
+
+    <main class="main">
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for any word" />
+        <input
+          type="text"
+          value="keyboard"
+          id="searchInput"
+          placeholder="Search for any word"
+        />
         <img src="./assets/images/icon-search.svg" alt="moon" />
+        <p class="empty-search-field-msg hidden">Whoops, can’t be empty…</p>
       </div>
 
       <section class="results-container">
@@ -50,7 +59,11 @@
             <p>/ˈkiːbɔːd/</p>
           </header>
           <div>
-            <img src="./assets/images/icon-play.svg" alt="play icon" />
+            <img
+              id="playIcon"
+              src="./assets/images/icon-play.svg"
+              alt="play icon"
+            />
           </div>
         </div>
         <article>
@@ -93,19 +106,7 @@
           <div class="meaning-container">
             <p>Meaning</p>
             <ul>
-              <li>
-                A device that converts electrical signals into visual images.
-              </li>
-              <li>
-                A component of many instruments including the piano, organ, and
-                harpsichord consisting of usually black and white keys that
-                cause different tones to be produced when struck.
-              </li>
-              <li>
-                A device with keys of a musical keyboard, used to control
-                electronic sound-producing devices which may be built into or
-                separate from the keyboard device.
-              </li>
+              <li>To type on a computer keyboard</li>
             </ul>
           </div>
         </article>
