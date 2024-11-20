@@ -429,11 +429,6 @@ body.dark-mode .meaning-container li {
   color: var(--color-light-gray-3);
 } */
 
-body.dark-mode .source-container p,
-body.dark-mode .source-container a {
-  /* color: var(--color-light-gray-1); */
-  /* text-decoration-color: var(--color-light-gray-3); */
-}
 
 body.dark-mode .source-container a {
   color: var(--color-white);
@@ -451,6 +446,5 @@ body.dark-mode .source-container a {
 @media (max-width: 600px) {
   body {
     padding-inline: 1.5rem; /* 24px */
-    background-color: red;
   }
 }
