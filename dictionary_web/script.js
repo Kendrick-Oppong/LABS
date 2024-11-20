@@ -1,12 +1,41 @@
 // DOM elements
+const darkModeToggle = document.getElementById("darkModeToggle");
+const fontFamilySelector = document.getElementById("fontFamily");
+const loadingSpinner = document.getElementById("loadingSpinner");
 const searchInput = document.getElementById("searchInput");
 const resultsContainer = document.querySelector(".results-container");
 const sourceContainer = document.querySelector(".source-container");
-const loadingSpinner = document.getElementById("loadingSpinner");
 const mainContent = document.querySelector(".main");
 const emptySearchInputMessage = document.querySelector(
   ".empty-search-field-msg"
 );
+
+// Dark Mode Toggle
+darkModeToggle.addEventListener("change", (e) => {
+  if (e.target.checked) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+});
+
+// Event listener for font family change
+fontFamilySelector.addEventListener("change", (e) => {
+  const selectedFont = e.target.value;
+  switch (selectedFont) {
+    case "Sans Serif":
+      document.body.style.fontFamily = "sans-serif";
+      break;
+    case "Serif":
+      document.body.style.fontFamily = "serif";
+      break;
+    case "Mono":
+      document.body.style.fontFamily = "monospace";
+      break;
+    default:
+      document.body.style.fontFamily = "sans-serif";
+  }
+});
 
 searchInput.addEventListener("keypress", (e) => {
   const word = searchInput.value.trim();
@@ -19,7 +48,6 @@ searchInput.addEventListener("keypress", (e) => {
       searchInput.style.border = "1px solid var(--color-light-gray-1)";
       emptySearchInputMessage.classList.add("hidden");
     }
-
     fetchWordData(word);
   }
 });
