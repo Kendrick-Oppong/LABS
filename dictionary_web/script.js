@@ -156,7 +156,7 @@ function playAudio(audioUrl) {
 function displayErrorMessage(error) {
   resultsContainer.innerHTML = `<section class="error-container">
         <h1>😕</h1>
-        <h1>${error.title}</h1>
+        <h1 class="title">${error.title}</h1>
         <p>
          ${error.message} ${error.resolution}
         </p>

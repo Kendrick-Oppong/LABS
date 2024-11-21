@@ -425,14 +425,12 @@ body.dark-mode .meaning-container li {
   color: var(--color-white);
 }
 
-/* body.dark-mode .synonyms-container li {
-  color: var(--color-light-gray-3);
-} */
-
+body.dark-mode .error-container h1 {
+  color: var(--color-gray-1) !important;
+}
 
 body.dark-mode .source-container a {
   color: var(--color-white);
-  /* text-decoration-color: var(--color-light-gray-3); */
 }
 
 /* media queries  */
