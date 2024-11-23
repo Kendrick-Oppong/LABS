@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+/* css resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  font-size: 100%;
+  font-family: "JetBrains Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Variables */
+:root {
+  --almost-white: #e6e5ea;
+  --very-dark-grey: #18171f;
+  --grey: #817d92;
+  --red: #f6444a;
+  --orange: #fb7c58;
+  --yellow: #f8cd65;
+  --dark-grey: #24232c;
+  --neon-green: #a4ffaf;
+}
+
+body {
+  background-color: var(--very-dark-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+}
+
+main {
+  margin-inline: auto;
+  text-align: center;
+  min-width: 90%;
+}
+
+header {
+  color: var(--grey);
+  font-size: 1.5rem;
+  margin-block: 2rem;
+}
+
+.main-wrapper {
+  padding-inline: 2rem;
+  padding-block: 2rem;
+  margin-block: 1.5rem;
+  color: var(--almost-white);
+  background-color: var(--dark-grey);
+}
+
+.display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.character-length-display p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.character-length-display .length {
+  font-size: 2rem;
+  color: var(--neon-green);
+}
+
+.password-result {
+  background-color: var(--dark-grey);
+  padding-inline: 2rem;
+  min-height: 5rem;
+}
+
+.copied-tooltip {
+  color: var(--neon-green);
+  margin-right: 1rem;
+  display: none;
+}
+
+.password-result img {
+  cursor: pointer;
+}
+
+.password-result img:hover {
+  filter: grayscale(1);
+}
+
+.password-result .password {
+  color: var(--grey);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--neon-green);
+  margin-block: 1.5rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  accent-color: var(--neon-green);
+}
+
+.checkbox-container {
+  text-align: left;
+}
+
+.checkbox-container div {
+  margin-block: 1rem;
+}
+
+.checkbox-container label {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.password-strength-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--very-dark-grey);
+  min-height: 4.5rem;
+  padding-inline: 1.5rem;
+  margin-block: 2rem;
+}
+
+.password-strength-wrapper h3 {
+  color: var(--grey);
+  font-weight: bold;
+}
+
+.password-strength-wrapper p {
+  color: var(--almost-white);
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.password-strength-bars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-strength-bars div {
+  width: 10px;
+  height: 28px;
+  border: 2px solid var(--almost-white);
+  background-color: transparent; /* Default */
+}
+
+/* Password strength colors */
+.password-strength-bars div.too-weak {
+  background-color: var(--red);
+}
+.password-strength-bars div.weak {
+  background-color: var(--orange);
+}
+.password-strength-bars div.medium {
+  background-color: var(--yellow);
+}
+.password-strength-bars div.strong {
+  background-color: var(--neon-green);
+}
+
+button {
+  width: 100%;
+  background-color: var(--neon-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 4.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+button:hover {
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  background-color: var(--dark-grey);
+}
+
+@media screen and (min-width: 698px) {
+  main {
+    min-width: 540px;
+  }
+}
