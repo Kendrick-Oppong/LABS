@@ -9,8 +9,7 @@ const lengthDisplay = document.querySelector(".length");
 const generateButton = document.querySelector("button");
 const strengthBars = document.querySelectorAll(".password-strength-bars div");
 const copyIcon = document.querySelector(".password-result img");
-const copiedTooltip = document.querySelector(".copied-tooltip"); 
-
+const copiedTooltip = document.querySelector(".copied-tooltip");
 
 // Character sets
 const UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -54,38 +53,48 @@ function updateStrength(
   let strength = 0;
   let strengthMessage = "";
 
-  // Determine strength based on length and character types
+  // Count how many character types are selected
+  const typesCount = [
+    hasUppercase,
+    hasLowercase,
+    hasNumbers,
+    hasSymbols,
+  ].filter(Boolean).length;
+
+  // Determining strength based on length and character types
   if (length < 8) {
     strengthMessage = "TOO WEAK";
     strength = 1;
-  } else if (length >= 8 && length < 12) {
-    if (hasUppercase + hasLowercase + hasNumbers + hasSymbols === 1) {
-      strengthMessage = "WEAK";
-      strength = 2;
-    } else {
-      strengthMessage = "MEDIUM";
-      strength = 3;
-    }
-  } else if (
-    length >= 12 &&
-    hasUppercase + hasLowercase + hasNumbers + hasSymbols >= 3
-  ) {
+  } else if (length >= 8 && typesCount === 1) {
+  
+    strengthMessage = "WEAK";
+    strength = 2;
+  } else if (length >= 8 && typesCount >= 2 && length < 12) {
+    
+    strengthMessage = "MEDIUM";
+    strength = 3;
+  } else if (length >= 12 && typesCount >= 3) {
+   
     strengthMessage = "STRONG";
     strength = 4;
+  } else {
+   
+    strengthMessage = "TOO WEAK";
+    strength = 1;
   }
 
-  // Reset bar styles
+  // Resetting bar styles
   strengthBars.forEach((bar) => (bar.style.backgroundColor = "transparent"));
 
-  // Set strength message and bar colors
+  // Setting strength message and bar colors
   const colors = {
-    "TOO WEAK": "var(--red)", 
-    WEAK: "var(--orange)", 
-    MEDIUM: "var(--yellow)", 
-    STRONG: "var(--neon-green)", 
+    "TOO WEAK": "var(--red)",
+    WEAK: "var(--orange)",
+    MEDIUM: "var(--yellow)",
+    STRONG: "var(--neon-green)",
   };
 
-  // Show strength message
+  // Showing strength message
   document.querySelector(
     ".password-strength-wrapper p"
   ).textContent = `${strengthMessage}`;
@@ -119,7 +128,7 @@ generateButton.addEventListener("click", () => {
     alert(
       "Please select at least one character type and set a valid character length."
     );
-    return; 
+    return;
   }
 
   const password = generatePassword(
@@ -144,7 +153,7 @@ copyIcon.addEventListener("click", () => {
       copiedTooltip.style.display = "block";
       setTimeout(() => {
         copiedTooltip.style.display = "none";
-      }, 2000); 
+      }, 2000);
     });
   }
 });
