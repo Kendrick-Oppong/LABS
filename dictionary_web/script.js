@@ -37,19 +37,26 @@ fontFamilySelector.addEventListener("change", (e) => {
   }
 });
 
-searchInput.addEventListener("keypress", (e) => {
+let debounceTimeout;
+
+searchInput.addEventListener("input", (e) => {
   const word = searchInput.value.trim();
-  if (e.key === "Enter") {
-    if (!word.length) {
-      searchInput.style.border = "1px solid var(--color-red)";
-      emptySearchInputMessage.classList.remove("hidden");
-      return;
-    } else {
-      searchInput.style.border = "1px solid var(--color-light-gray-1)";
-      emptySearchInputMessage.classList.add("hidden");
-    }
-    fetchWordData(word);
+
+  if (!word.length) {
+    searchInput.style.border = "1px solid var(--color-red)";
+    emptySearchInputMessage.classList.remove("hidden");
+    return;
+  } else {
+    searchInput.style.border = "1px solid var(--color-light-gray-1)";
+    emptySearchInputMessage.classList.add("hidden");
   }
+
+  clearTimeout(debounceTimeout);
+
+  debounceTimeout = setTimeout(() => {
+    fetchWordData(word); 
+  }, 500); 
+
 });
 
 // Function to fetch dictionary data
