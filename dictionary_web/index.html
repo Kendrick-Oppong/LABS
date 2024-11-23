@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary Web App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div>
+          <img src="assets/images/logo.svg" alt="" />
+        </div>
+        <div class="fontFamily">
+          <select name="fontFamily" id="fontFamily">
+            <option value="Sans Serif">Sans Serif</option>
+            <option value="Serif">Serif</option>
+            <option value="Mono">Mono</option>
+          </select>
+          <div class="switch-container">
+            <div>
+              <label class="switch">
+                <input type="checkbox" id="darkModeToggle" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <img
+                class="theme-icon"
+                src="assets/images/icon-moon.svg"
+                alt="moon icon"
+              />
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Spinner (loading indicator) -->
+    <div id="loadingSpinner" class="spinner hidden"></div>
+
+    <main class="main">
+      <div class="search-container">
+        <input
+          type="text"
+          value="keyboard"
+          id="searchInput"
+          placeholder="Search for any word"
+        />
+        <img src="./assets/images/icon-search.svg" alt="search icon" />
+        <p class="empty-search-field-msg hidden">Whoops, can’t be empty…</p>
+      </div>
+
+      <section class="results-container">
+        <div class="header-play-container">
+          <header class="title">
+            <h1>keyboard</h1>
+            <p>/ˈkiːbɔːd/</p>
+          </header>
+          <div>
+            <img
+              id="playIcon"
+              src="./assets/images/icon-play.svg"
+              alt="play icon"
+            />
+          </div>
+        </div>
+        <article>
+          <div class="definition-container">
+            <p>noun</p>
+            <hr />
+          </div>
+          <div class="meaning-container">
+            <p>Meaning</p>
+            <ul>
+              <li>
+                A device that converts electrical signals into visual images.
+              </li>
+              <li>
+                A component of many instruments including the piano, organ, and
+                harpsichord consisting of usually black and white keys that
+                cause different tones to be produced when struck.
+              </li>
+              <li>
+                A device with keys of a musical keyboard, used to control
+                electronic sound-producing devices which may be built into or
+                separate from the keyboard device.
+              </li>
+            </ul>
+          </div>
+          <div class="synonyms-container">
+            <p>Synonyms</p>
+            <p>electronic keyboard</p>
+          </div>
+          <div class="definition-container">
+            <p>Verb</p>
+            <hr />
+          </div>
+          <div class="meaning-container">
+            <p>Meaning</p>
+            <ul>
+              <li>To type on a computer keyboard</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+      <div class="source-container">
+        <p>Source</p>
+        <p>
+          <a href="https://en.wiktionary.org/wiki/keyboard">
+            https://en.wiktionary.org/wiki/keyboard
+            <img
+              src="./assets/images/icon-new-window.svg"
+              alt="new window icon"
+            />
+          </a>
+        </p>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
