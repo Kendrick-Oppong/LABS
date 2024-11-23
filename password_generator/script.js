@@ -11,12 +11,16 @@ const strengthBars = document.querySelectorAll(".password-strength-bars div");
 const copyIcon = document.querySelector(".password-result img");
 const copiedTooltip = document.querySelector(".copied-tooltip");
 
+// Disable copy button initially
+copyIcon.classList.add("disabled-copy");
+
 // Character sets
 const UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
 const NUMERIC_CHARS = "0123456789";
 const SYMBOL_CHARS = "!@#$%^&*()_+[]{}|;:,.<>?";
 
+// Function to generate a random password
 function generatePassword(
   length,
   hasUppercase,
@@ -31,8 +35,6 @@ function generatePassword(
   if (hasLowercase) availableChars += LOWERCASE_CHARS;
   if (hasNumbers) availableChars += NUMERIC_CHARS;
   if (hasSymbols) availableChars += SYMBOL_CHARS;
-
-  if (availableChars.length === 0) return ""; // Return empty string if no options are selected
 
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * availableChars.length);
@@ -53,7 +55,6 @@ function updateStrength(
   let strength = 0;
   let strengthMessage = "";
 
-  // Count how many character types are selected
   const typesCount = [
     hasUppercase,
     hasLowercase,
@@ -61,32 +62,25 @@ function updateStrength(
     hasSymbols,
   ].filter(Boolean).length;
 
-  // Determining strength based on length and character types
   if (length < 8) {
     strengthMessage = "TOO WEAK";
     strength = 1;
   } else if (length >= 8 && typesCount === 1) {
-  
     strengthMessage = "WEAK";
     strength = 2;
   } else if (length >= 8 && typesCount >= 2 && length < 12) {
-    
     strengthMessage = "MEDIUM";
     strength = 3;
   } else if (length >= 12 && typesCount >= 3) {
-   
     strengthMessage = "STRONG";
     strength = 4;
   } else {
-   
     strengthMessage = "TOO WEAK";
     strength = 1;
   }
 
-  // Resetting bar styles
   strengthBars.forEach((bar) => (bar.style.backgroundColor = "transparent"));
 
-  // Setting strength message and bar colors
   const colors = {
     "TOO WEAK": "var(--red)",
     WEAK: "var(--orange)",
@@ -94,12 +88,10 @@ function updateStrength(
     STRONG: "var(--neon-green)",
   };
 
-  // Showing strength message
   document.querySelector(
     ".password-strength-wrapper p"
   ).textContent = `${strengthMessage}`;
 
-  // Applying color to bars based on strength
   for (let i = 0; i < strength; i++) {
     strengthBars[i].style.backgroundColor = colors[strengthMessage];
   }
@@ -119,7 +111,6 @@ generateButton.addEventListener("click", () => {
   const hasNumbers = numbersCheckbox.checked;
   const hasSymbols = symbolsCheckbox.checked;
 
-  // Validation check: Ensuring at least one character type is selected and the length is valid
   if (
     length < 1 ||
     length > 20 ||
@@ -141,14 +132,19 @@ generateButton.addEventListener("click", () => {
   passwordDisplay.style.color = `var(--almost-white)`;
   passwordDisplay.textContent = password;
 
+  // Enable the copy button after password generation
+  copyIcon.classList.remove("disabled-copy");
+  copyIcon.classList.add("enabled-copy");
+
   // Update strength
   updateStrength(length, hasUppercase, hasLowercase, hasNumbers, hasSymbols);
 });
 
+// Copy password to clipboard
 copyIcon.addEventListener("click", () => {
   const password = passwordDisplay.textContent;
 
-  if (password !== "Select Options") {
+  if (password) {
     navigator.clipboard.writeText(password).then(() => {
       copiedTooltip.style.display = "block";
       setTimeout(() => {

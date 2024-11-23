@@ -129,10 +129,16 @@ header {
   display: none;
 }
 
-.password-result img {
-  cursor: pointer;
+
+.disabled-copy {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+.enabled-copy {
+  opacity: 1;
+  cursor: pointer;
+}
 .password-result img:hover {
   filter: grayscale(1);
 }
@@ -201,6 +207,7 @@ input[type="checkbox"] {
   border: 2px solid var(--almost-white);
   background-color: transparent; /* Default */
 }
+
 
 /* Password strength colors */
 .password-strength-bars div.too-weak {
