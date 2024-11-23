@@ -90,7 +90,7 @@ function updateStrength(
     ".password-strength-wrapper p"
   ).textContent = `${strengthMessage}`;
 
-  // Apply color to bars based on strength
+  // Applying color to bars based on strength
   for (let i = 0; i < strength; i++) {
     strengthBars[i].style.backgroundColor = colors[strengthMessage];
   }
@@ -110,7 +110,7 @@ generateButton.addEventListener("click", () => {
   const hasNumbers = numbersCheckbox.checked;
   const hasSymbols = symbolsCheckbox.checked;
 
-  // Validation check: Ensure at least one character type is selected and the length is valid
+  // Validation check: Ensuring at least one character type is selected and the length is valid
   if (
     length < 1 ||
     length > 20 ||
